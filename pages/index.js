@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Seo from "components/Seo"
+import Confetti from 'react-confetti'
 
 export default function Home ()
 {
@@ -194,7 +195,14 @@ export default function Home ()
               {processing ? 'Submitting' : 'Create account'}
             </button>
             {error && <span className="errorMsg">Please fill out the required fields.</span>}
-            {success && <span className="successMsg">Yay!! your form is successfully submitted.</span>}
+            {success &&
+              <>
+                <span className="successMsg">Yay!! your form is successfully submitted.</span>
+                <Confetti
+                  width={window.innerWidth}
+                  height={window.innerHeight}
+                />
+              </>}
           </p>
         </fieldset>
 
