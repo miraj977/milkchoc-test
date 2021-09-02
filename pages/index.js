@@ -13,7 +13,7 @@ export default function Home ()
   const [ processing, setProcessing ] = useState( false )
   const [ success, setSuccess ] = useState( '' )
   const [ error, setError ] = useState( false )
-  let isValid = true
+  let isValid = true, selected;
 
   //Select Control
   const handleSelect = ( e ) =>
@@ -22,14 +22,26 @@ export default function Home ()
     setColour( e.target.value )
   }
 
+  useEffect( () =>
+  {
+    // animal.includes( selected ) ? animal.splice( animal.indexOf( selected ), 1 ) : setAnimal( [ ...animal, selected ] )
+    return animal
+
+  }, [ animal ] )
+
+  const handleCheck = ( e ) =>
+  {
+    selected = e.target.value;
+    animal.includes( selected )
+      ? animal.splice( animal.indexOf( selected ), 1 )
+      : setAnimal( [ ...animal, selected ] )
+  }
+
   const validation = () =>
   {
-    console.log( { email, password, colour, animal, tigerType } )
-
     if ( email == "" ) { isValid = false }
     if ( colour == "" ) { isValid = false }
     if ( password.length < 8 ) { isValid = false }
-    console.log( animal )
     if ( animal.length < 2 ) { isValid = false; }
     if ( animal.includes( 'tiger' ) && tigerType == "" ) { isValid = false; }
     return isValid
@@ -136,7 +148,7 @@ export default function Home ()
               name='animal'
               value='bear'
               id='bear'
-              onChange={( e ) => setAnimal( [ ...animal, e.target.value ] )} />
+              onClick={( e ) => handleCheck( e )} />
             <label htmlFor='bear'>
               Bear
             </label>
@@ -146,7 +158,7 @@ export default function Home ()
               name='animal'
               value='tiger'
               id='tiger'
-              onChange={( e ) => setAnimal( [ ...animal, e.target.value ] )} />
+              onClick={( e ) => handleCheck( e )} />
             <label htmlFor='tiger'>
               Tiger
             </label>
@@ -156,7 +168,7 @@ export default function Home ()
               name='animal'
               value='snake'
               id='snake'
-              onChange={( e ) => setAnimal( [ ...animal, e.target.value ] )} />
+              onClick={( e ) => handleCheck( e )} />
             <label htmlFor='snake'>
               Snake
             </label>
@@ -166,7 +178,7 @@ export default function Home ()
               name='animal'
               value='donkey'
               id='donkey'
-              onChange={( e ) => setAnimal( [ ...animal, e.target.value ] )} />
+              onClick={( e ) => handleCheck( e )} />
             <label htmlFor='donkey'>
               Donkey
             </label>
