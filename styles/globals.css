@@ -175,3 +175,9 @@ An error class to forms that fail your validation:
 .error > input {
   border-color: red;
 }
+
+.error-span {
+  color: red;
+  font-size: 12px;
+  margin-left: 10px;
+}

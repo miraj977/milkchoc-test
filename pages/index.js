@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Seo from "components/Seo"
 import Confetti from 'react-confetti'
 
-export default function Home ()
+export default function index ()
 {
 
   const [ email, setEmail ] = useState( '' );
@@ -128,7 +128,11 @@ export default function Home ()
             <label className='label' htmlFor='colour'>
               Colour
             </label>
-            <select name='colour' id='colour' onChange={handleSelect} value={colour}>
+            <select
+              className={error && colour == "" ? 'error' : ''}
+              name='colour' id='colour'
+              onChange={handleSelect}
+              value={colour}>
               <option value=''>Choose colour</option>
               <option value='blue'>Blue</option>
               <option value='green'>Green</option>
@@ -182,6 +186,7 @@ export default function Home ()
             <label htmlFor='donkey'>
               Donkey
             </label>
+            {error && animal.length < 2 ? <span className='error-span'>Choose atleast 2 animals</span> : ''}
           </p>
 
           <p className={error && animal.includes( 'tiger' ) && tigerType == "" ? 'error' : ''}>
